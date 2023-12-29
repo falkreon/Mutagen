@@ -1,9 +1,3 @@
-# Fabric Example Mod
+# Mutagen
 
-## Setup
-
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
-
-## License
-
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+Adds Mutagen and Splash Mutagen potions, which turn passive mobs into larger versions with special features
