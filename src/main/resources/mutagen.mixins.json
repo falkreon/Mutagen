@@ -1,9 +1,9 @@
 {
 	"required": true,
-	"package": "com.example.mixin",
+	"package": "blue.endless.mutagen.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"ExampleMixin"
+		"MutagenMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

@@ -1,31 +1,32 @@
 {
 	"schemaVersion": 1,
-	"id": "modid",
+	"id": "mutagen",
 	"version": "${version}",
-	"name": "Example mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "Mutagen",
+	"description": "A new kind of splash potion",
 	"authors": [
-		"Me!"
+		"Falkreon"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://github.com/falkreon/Mutagen",
+		"sources": "https://github.com/falkreon/Mutagen",
+		"issues": "https://github.com/falkreon/Mutagen/issues"
 	},
-	"license": "CC0-1.0",
-	"icon": "assets/modid/icon.png",
+	"license": "MIT",
+	"icon": "assets/mutagen/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.example.ExampleMod"
+			"blue.endless.mutagen.MutagenMod"
 		],
 		"client": [
-			"com.example.ExampleModClient"
+			"blue.endless.mutagen.client.MutagenClient"
 		]
 	},
 	"mixins": [
-		"modid.mixins.json",
+		"mutagen.mixins.json",
 		{
-			"config": "modid.client.mixins.json",
+			"config": "mutagen.client.mixins.json",
 			"environment": "client"
 		}
 	],

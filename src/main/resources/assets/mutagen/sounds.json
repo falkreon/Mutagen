@@ -1,0 +1,21 @@
+{
+	"mutate": {
+		"subtitle": "subtitles.mutagen.mutate",
+		"sounds": [
+			"mutagen:mutate"
+		]
+	},
+	"fail_to_mutate": {
+		"subtitle": "subtitles.mutagen.fail_to_mutate",
+		"sounds": [
+			"mutagen:fail_to_mutate_1",
+			"mutagen:fail_to_mutate_2"
+		]
+	},
+	"whoosh": {
+		"subtitle": "subtitles.mutagen.whoosh",
+		"sounds": [
+			"mutagen:stamina_gain"
+		]
+	}
+}
