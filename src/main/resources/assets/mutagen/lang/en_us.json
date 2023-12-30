@@ -1,6 +1,7 @@
 {
 	"item.minecraft.potion.effect.mutagen": "Mutagen",
 	"item.minecraft.splash_potion.effect.mutagen": "Splash Mutagen",
+	"item.minecraft.lingering_potion.effect.mutagen": "Lingering Mutagen",
 	"subtitles.mutagen.mutate": "Mutagen takes effect",
 	"subtitles.mutagen.fail_to_mutate": "Mutagen fails",
 	"subtitles.mutagen.whoosh": "Speed builds"
