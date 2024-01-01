@@ -20,6 +20,7 @@ public class MutagenStatus extends StatusEffect {
 	
 	@Override
 	public void applyInstantEffect(Entity source, Entity attacker, LivingEntity target, int amplifier, double proximity) {
+		
 		if (target instanceof net.minecraft.entity.passive.SalmonEntity) {
 			World world = target.getWorld();
 			SalmonEntity replacement = MutagenMod.SALMON.create(world);
