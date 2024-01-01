@@ -1,11 +1,20 @@
 package blue.endless.mutagen;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -48,5 +57,25 @@ public class MutagenMod implements ModInitializer {
 		MUTAGEN_POTION = Registry.register(Registries.POTION, new Identifier("mutagen", "mutagen"), new Potion(new StatusEffectInstance(MUTAGEN_STATUS)));
 		
 		BrewingRecipeRegistry.registerPotionRecipe(Potions.THICK, Items.SPIDER_EYE, MUTAGEN_POTION);
+		
+		//Grab the config if it exists
+		Gson gson = new GsonBuilder()
+				.setPrettyPrinting()
+				.create();
+		Path configFile = FabricLoader.getInstance().getConfigDir().resolve("mutagen.json");
+		if (Files.exists(configFile)) {
+			try {
+				Config.INSTANCE = gson.fromJson(Files.readString(configFile), Config.class);
+			} catch (JsonSyntaxException | IOException e) {
+				LOGGER.error("Could not read config file.", e);
+			}
+		} else {
+			try {
+				Config.INSTANCE = new Config();
+				Files.writeString(configFile, gson.toJson(Config.INSTANCE, Config.class));
+			} catch (IOException e) {
+				LOGGER.error("Could not write default config file.", e);
+			}
+		}
 	}
 }

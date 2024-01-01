@@ -22,6 +22,7 @@ public class AbstractMutatedEntity extends AnimalEntity {
 	protected int staminaChangeCooldown = 0;
 	protected int mountStamina;
 	protected int maxMountStamina = 4;
+	protected int idleTicks = 0;
 
 	protected AbstractMutatedEntity(EntityType<? extends AnimalEntity> entityType, World world) {
 		super(entityType, world);
@@ -61,6 +62,7 @@ public class AbstractMutatedEntity extends AnimalEntity {
 	@Override
 	protected void tickControlled(PlayerEntity controllingPlayer, Vec3d movementInput) {
 		super.tickControlled(controllingPlayer, movementInput);
+		idleTicks = 0;
 		Vec2f vec2f = this.getControlledRotation(controllingPlayer);
 		this.setRotation(vec2f.y, vec2f.x);
 		this.bodyYaw = this.headYaw = this.getYaw();
@@ -68,6 +70,24 @@ public class AbstractMutatedEntity extends AnimalEntity {
 		if (this.isLogicalSideForUpdatingMovement()) {
 			//TODO: Tick some other movement things!
 		}
+	}
+	
+	@SuppressWarnings("resource")
+	public void considerDespawn() {
+		idleTicks++;
+		
+		if (this.getWorld().isClient) return;
+		if (this.hasCustomName()) return;
+		
+		if (Config.INSTANCE.mutants.idleTicksBeforeDespawn > 0 && idleTicks > Config.INSTANCE.mutants.idleTicksBeforeDespawn) {
+			this.discard();
+		}
+	}
+	
+	@Override
+	public void tick() {
+		considerDespawn();
+		super.tick();
 	}
 	
 	@Override
